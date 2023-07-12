@@ -6,6 +6,19 @@ class ColorRepository:
     def __init__(self, connector: SQLiteConnector) -> None:
         self.connector = connector
 
+    def getAll(self) -> list[Color]:
+        conn = self.connector.connect()
+        cur = conn.cursor()
+        cur.execute("""SELECT * FROM color""")
+
+        colors = []
+        for row in cur.fetchall():
+            color = Color(row[1])
+            color.id = row[0]
+            colors.append(color)
+            
+        return colors
+
     def getById(self, colorId: int) -> Color:
         conn = self.connector.connect()
         cur = conn.cursor()

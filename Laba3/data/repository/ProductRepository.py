@@ -7,6 +7,42 @@ from data.SQLiteConnector import SQLiteConnector
 class ProductRepository:
     def __init__(self, connector: SQLiteConnector) -> None:
         self.connector = connector
+
+    def getAll(self) -> list[Product]:
+        conn = self.connector.connect()
+        cur = conn.cursor()
+
+        cur.execute("""
+            SELECT 
+                p.id AS 'product_id', 
+                p.product_name AS 'product_name', 
+                p.price AS 'product_price', 
+                tp.id AS 'type_id', 
+                tp.type_name AS 'type_name',  
+                p.availability AS 'product_availability', 
+                c.id AS 'color_id',
+                c.color_name AS 'color_name' 
+            FROM product p
+            JOIN type_product tp ON p.type_id = tp.id 
+            JOIN color c ON p.color_id = c.id""")
+
+        allProducts = []
+        for row in cur.fetchall():
+            receivedId, productName, price, typeProductId, typeProductName, availability, colorId, colorName = row
+
+            typeProduct = TypeProduct(typeProductName)
+            typeProduct.id = typeProductId
+
+            color = Color(colorName)
+            color.id = colorId
+
+            product = Product(productName, price, typeProduct, availability, color)
+            product.id = receivedId
+            
+            allProducts.append(product)
+
+        return allProducts
+
     
     def getById(self, productId: int) -> Product:
         conn = self.connector.connect()
@@ -83,8 +119,11 @@ class ProductRepository:
             conn = self.connector.connect()
             cur = conn.cursor()
 
-            cur.execute("""UPDATE color SET color_name = ? WHERE id = ?""", (updatedProduct.color.colorName, updatedProduct.color.id, ))
-            cur.execute("""UPDATE type_product SET type_name = ? WHERE id = ?""", (updatedProduct.typeProduct.typeName, updatedProduct.typeProduct.id, ))
+            paramsForColor = (updatedProduct.color.colorName, updatedProduct.color.id, )
+            cur.execute("""UPDATE color SET color_name = ? WHERE id = ?""", paramsForColor)
+
+            paramsForTypeProduct = (updatedProduct.typeProduct.typeName, updatedProduct.typeProduct.id, )
+            cur.execute("""UPDATE type_product SET type_name = ? WHERE id = ?""", paramsForTypeProduct)
             
             paramsForProduct = (
                 updatedProduct.productName, 
@@ -96,12 +135,11 @@ class ProductRepository:
             
             cur.execute("""
                 UPDATE product SET 
-                product_name = ?,
-                price = ?,
-                type_id = ?,
-                availability = ?,
-                color_id = ?
-                WHERE id = ?
-            """, paramsForProduct)
+                    product_name = ?,
+                    price = ?,
+                    type_id = ?,
+                    availability = ?,
+                    color_id = ?
+                WHERE id = ? """, paramsForProduct)
             
             conn.commit()
