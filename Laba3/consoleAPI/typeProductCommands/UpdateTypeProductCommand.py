@@ -3,7 +3,7 @@ from consoleAPI.Argument import Argument
 from consoleAPI.Command import BaseCommand
 
 
-class UpdateProductCommand(BaseCommand):
+class UpdateTypeProductCommand(BaseCommand):
     def __init__(self, typeProductRepository: TypeProductRepository):
         self.typeProductRepository = typeProductRepository
         self.name = 'update_type_product'

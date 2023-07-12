@@ -2,7 +2,19 @@ from consoleAPI.colorCommands.DeleteColorCommand import DeleteColorCommand
 from consoleAPI.colorCommands.UpdateColorCommand import UpdateColorCommand
 from consoleAPI.colorCommands.GetColorByIdCommand import GetColorByIdCommand
 from consoleAPI.colorCommands.AddColorCommand import AddColorCommand
-from feature.countProductsForEachColor import countProductsForEachColor
+
+from consoleAPI.typeProductCommands.DeleteTypeProductCommand import DeleteTypeProductCommand
+from consoleAPI.typeProductCommands.UpdateTypeProductCommand import UpdateTypeProductCommand
+from consoleAPI.typeProductCommands.GetTypeProductByIdCommand import GetTypeProductByIdCommand
+from consoleAPI.typeProductCommands.AddTypeProductCommand import AddTypeProductCommand
+
+from consoleAPI.productCommands.DeleteProductCommand import DeleteProductCommand
+from consoleAPI.productCommands.UpdateProductCommand import UpdateProductCommand
+from consoleAPI.productCommands.GetProductByIdCommand import GetProductByIdCommand
+from consoleAPI.productCommands.AddProductCommand import AddProductCommand
+
+from consoleAPI.featuresCommand.CountProductsForEachColorCommand import CountProductsForEachColorCommand
+
 from entity.Product import Product
 from entity.TypeProduct import TypeProduct
 from entity.Color import Color
@@ -78,6 +90,18 @@ if __name__ == '__main__':
         AddColorCommand(colorRepo),
         DeleteColorCommand(colorRepo),
         UpdateColorCommand(colorRepo),
+
+        GetTypeProductByIdCommand(typeProductRepo),
+        AddTypeProductCommand(typeProductRepo),
+        DeleteTypeProductCommand(typeProductRepo),
+        UpdateTypeProductCommand(typeProductRepo),
+
+        GetProductByIdCommand(productRepo),        
+        AddProductCommand(productRepo, colorRepo, typeProductRepo),
+        DeleteProductCommand(productRepo),
+        UpdateProductCommand(productRepo, colorRepo, typeProductRepo),
+
+        CountProductsForEachColorCommand(connector)
     ]
 
     line = input()
@@ -87,31 +111,3 @@ if __name__ == '__main__':
     command = list(filter(lambda x: x.name == nameCommand, commands))
     if len(command) != 0:
         command[0].handle(parts[1:])
-
-
-
-'''
-color's commands
------------------------------------------
-get_color_by_id [id]
-add_color [name]
-delete_color [id]
-update_color [prev_id] [new_name]
-
-type produpct's commands
------------------------------------------
-get_type_product_by_id [id]
-add_type_product [name]
-delete_type_product [id]
-update_type_product [prev_id] [new_name]
-
-product's commands
------------------------------------------
-get_product_by_id [id]
-add_product [name] [price] [type_id] [availability] [color_id]
-delete_type_product [id]
-update_type_product [prev_id] [new_name] [new_price] [new_type_id] [new_availability] [new_color_id]
-
-general commands
-count_products_for_each_color
-'''
