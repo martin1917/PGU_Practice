@@ -6,6 +6,7 @@ from consoleAPI.Command import BaseCommand
 
 class AddTypeProductCommand(BaseCommand):
     def __init__(self, typeProductRepository: TypeProductRepository):
+        super().__init__()
         self.typeProductRepository = typeProductRepository
         self.name = 'add_type_product'
         self.description = 'Добавление типа товара'

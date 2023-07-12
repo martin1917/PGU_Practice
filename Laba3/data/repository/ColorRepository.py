@@ -10,7 +10,12 @@ class ColorRepository:
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM color WHERE id = ?""", (colorId, ))
-        receivedId, colorName = cur.fetchone()
+        result = cur.fetchone()
+
+        if result is None:
+            return None
+        
+        receivedId, colorName = result
         color = Color(colorName)
         color.id = receivedId
         return color

@@ -12,6 +12,7 @@ class AddProductCommand(BaseCommand):
             productRepository: ProductRepository, 
             colorRepository: ColorRepository, 
             typeProductRepository: TypeProductRepository):
+        super().__init__()
         self.productRepository = productRepository
         self.colorRepository = colorRepository
         self.typeProductRepository = typeProductRepository        

@@ -5,6 +5,7 @@ from consoleAPI.Command import BaseCommand
 
 class UpdateColorCommand(BaseCommand):
     def __init__(self, colorRepository: ColorRepository):
+        super().__init__()
         self.colorRepository = colorRepository
         self.name = 'update_color'
         self.description = 'Обновление цвета'

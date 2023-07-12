@@ -5,6 +5,7 @@ from consoleAPI.Command import BaseCommand
 
 class GetColorByIdCommand(BaseCommand):
     def __init__(self, colorRepository: ColorRepository):
+        super().__init__()
         self.colorRepository = colorRepository
         self.name = 'get_color_by_id'
         self.description = 'Получение цвета по id'

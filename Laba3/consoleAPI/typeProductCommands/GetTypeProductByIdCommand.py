@@ -5,6 +5,7 @@ from consoleAPI.Command import BaseCommand
 
 class GetTypeProductByIdCommand(BaseCommand):
     def __init__(self, typeProductRepository: TypeProductRepository):
+        super().__init__()
         self.typeProductRepository = typeProductRepository
         self.name = 'get_type_product_by_id'
         self.description = 'Получение типа товара по id'

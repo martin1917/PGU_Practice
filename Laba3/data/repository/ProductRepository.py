@@ -27,7 +27,12 @@ class ProductRepository:
             JOIN color c ON p.color_id = c.id
             WHERE p.id = (?)""", (productId, ))
 
-        receivedId, productName, price, typeProductId, typeProductName, availability, colorId, colorName = cur.fetchone()
+        result = cur.fetchone()
+
+        if result is None:
+            return None
+
+        receivedId, productName, price, typeProductId, typeProductName, availability, colorId, colorName = result
 
         typeProduct = TypeProduct(typeProductName)
         typeProduct.id = typeProductId

@@ -10,7 +10,12 @@ class TypeProductRepository:
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM type_product WHERE id = ?""", (typeId, ))
-        receivedId, typeName = cur.fetchone()
+        result = cur.fetchone()
+
+        if result is None:
+            return None
+
+        receivedId, typeName = result
         typeProduct = TypeProduct(typeName)
         typeProduct.id = receivedId
         return typeProduct

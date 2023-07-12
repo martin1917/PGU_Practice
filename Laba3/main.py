@@ -104,10 +104,25 @@ if __name__ == '__main__':
         CountProductsForEachColorCommand(connector)
     ]
 
-    line = input()
-    parts = line.split(' ')
-    nameCommand = parts[0]
-    
-    command = list(filter(lambda x: x.name == nameCommand, commands))
-    if len(command) != 0:
-        command[0].handle(parts[1:])
+    print('help - справка по всем коммандам')
+    print('help [command] - справка по камманде')
+    print('q - выход из программы')
+
+    while True:
+        print('> ', end='')
+        parts = input().split(' ')
+
+        if len(parts) == 0:
+            print('Ошибка!!!')
+        
+        commandName = parts[0]
+
+        if len(parts) == 1 and commandName == 'help':
+            for command in commands:
+                print(command)
+
+        command = list(filter(lambda x: x.name == commandName, commands))
+        if len(command) != 0:
+            command[0].handle(parts[1:])
+
+

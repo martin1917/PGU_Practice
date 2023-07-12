@@ -5,6 +5,7 @@ from consoleAPI.Command import BaseCommand
 
 class DeleteProductCommand(BaseCommand):
     def __init__(self, productRepository: ProductRepository):
+        super().__init__()
         self.productRepository = productRepository     
         self.name = 'delete_product'
         self.description = 'Удаление товара'

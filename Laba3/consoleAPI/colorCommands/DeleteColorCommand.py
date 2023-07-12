@@ -6,6 +6,7 @@ from consoleAPI.Command import BaseCommand
 
 class DeleteColorCommand(BaseCommand):
     def __init__(self, colorRepository: ColorRepository):
+        super().__init__()
         self.colorRepository = colorRepository
         self.name = 'delete_color'
         self.description = 'Удаление цвета'
