@@ -36,4 +36,4 @@ class AddProductCommand(BaseCommand):
         product = Product(params[0], params[1], typeProduct, params[3], color)
         productId = self.productRepository.add(product)
         product.id = productId
-        print(f'Добавлен товар: {product}')
+        print(f'Добавлен товар: {product}\n')

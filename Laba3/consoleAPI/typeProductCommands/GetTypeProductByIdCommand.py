@@ -19,4 +19,4 @@ class GetTypeProductByIdCommand(BaseCommand):
             return
 
         typeProduct = self.typeProductRepository.getById(params[0])
-        print(f'Получен тип: {typeProduct}')
+        print(f'Получен тип: {typeProduct}\n')

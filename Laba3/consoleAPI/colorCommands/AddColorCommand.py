@@ -20,5 +20,6 @@ class AddColorCommand(BaseCommand):
             return
 
         color = Color(params[0])
-        self.colorRepository.add(color)
-        print(f'Добавлен цвет: {color}')
+        colorId = self.colorRepository.add(color)
+        color.id = colorId
+        print(f'Добавлен цвет: {color}\n')

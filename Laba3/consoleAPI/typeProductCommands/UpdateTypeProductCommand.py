@@ -22,4 +22,4 @@ class UpdateTypeProductCommand(BaseCommand):
         typeProduct = self.typeProductRepository.getById(params[0])
         typeProduct.typeName = params[1]
         self.typeProductRepository.update(typeProduct)
-        print(f'тип Обновлен: {typeProduct}')
+        print(f'тип Обновлен: {typeProduct}\n')

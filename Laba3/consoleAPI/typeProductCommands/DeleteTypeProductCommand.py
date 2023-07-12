@@ -19,4 +19,4 @@ class DeleteTypeProductCommand(BaseCommand):
             return
 
         self.typeProductRepository.delete(params[0])
-        print('Тип удален:')
+        print('Тип удален\n')

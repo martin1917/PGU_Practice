@@ -41,4 +41,4 @@ class UpdateProductCommand(BaseCommand):
         product.availability = params[4]
         product.color = color
         self.productRepository.update(product)
-        print(f'Товар обновлен: {product}')
+        print(f'Товар обновлен: {product}\n')

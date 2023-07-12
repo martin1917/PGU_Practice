@@ -1,3 +1,4 @@
+from consoleAPI.Command import BaseCommand
 from consoleAPI.colorCommands.DeleteColorCommand import DeleteColorCommand
 from consoleAPI.colorCommands.UpdateColorCommand import UpdateColorCommand
 from consoleAPI.colorCommands.GetColorByIdCommand import GetColorByIdCommand
@@ -15,9 +16,6 @@ from consoleAPI.productCommands.AddProductCommand import AddProductCommand
 
 from consoleAPI.featuresCommand.CountProductsForEachColorCommand import CountProductsForEachColorCommand
 
-from entity.Product import Product
-from entity.TypeProduct import TypeProduct
-from entity.Color import Color
 from data.SQLiteConnector import SQLiteConnector
 from data.repository.ColorRepository import ColorRepository
 from data.repository.ProductRepository import ProductRepository
@@ -27,44 +25,10 @@ import csv
 
 if __name__ == '__main__':
     DB_PATH = './Laba3/db/laba3_db.db'
-    SCRIPT_PATH = './Laba3/db/create_schema.sql'
-
     connector = SQLiteConnector(DB_PATH)
     colorRepo = ColorRepository(connector)
     typeProductRepo = TypeProductRepository(connector)
     productRepo = ProductRepository(connector)
-    
-    # # добавление цветов
-    # colorRepo.add(Color('black'))
-    # colorRepo.add(Color('white'))
-    # colorRepo.add(Color('green'))
-
-    # # добавление типов товаров
-    # typeProductRepo.add(TypeProduct('Электроника'))
-    # typeProductRepo.add(TypeProduct('Телефоны'))
-    # typeProductRepo.add(TypeProduct('Аксессуары'))
-
-    # # получение цветов из бд
-    # black = colorRepo.getById(1)
-    # white = colorRepo.getById(2)
-    # green = colorRepo.getById(3)
-
-    # # получение типов товаров из бд
-    # electronices = typeProductRepo.getById(1)
-    # phones = typeProductRepo.getById(2)
-    # accessories = typeProductRepo.getById(3)
-
-    # # добавление товаров
-    # productRepo.add(Product('Беспроводные наушники A6RDots TWS', 575, electronices, 1, green))
-    # productRepo.add(Product('Батарейки 2032, 3В, 2шт', 205, electronices, 1, black))
-    # productRepo.add(Product('Samsung S7', 25999.67, phones, 1, black))
-    # productRepo.add(Product('IPhone 14 Pro MAX', 149990.57, phones, 1, white))
-    # productRepo.add(Product('Кабельный органайзер', 359, accessories, 1, black))
-    # productRepo.add(Product('Чехол для хранения наручных часов', 550, accessories, 1, green))
-
-    # # получение товара из бд по id
-    # product = productRepo.getById(1)
-    # print(product)
 
     # # Работа с CSV
     # with open('./Laba3/datas.csv', mode='w', encoding='utf-8') as wFile:
@@ -114,15 +78,30 @@ if __name__ == '__main__':
 
         if len(parts) == 0:
             print('Ошибка!!!')
+            continue
         
         commandName = parts[0]
 
         if len(parts) == 1 and commandName == 'help':
-            for command in commands:
+            for command in commands: 
                 print(command)
+            continue
 
-        command = list(filter(lambda x: x.name == commandName, commands))
-        if len(command) != 0:
-            command[0].handle(parts[1:])
+        if len(parts) == 2 and commandName == 'help':
+            for command in filter(lambda command: command.name == parts[1], commands):
+                print(command.help())
+            continue
+        
+        if len(parts) == 1 and commandName == 'q':
+            break
+
+        filteredCommands = list(filter(lambda x: x.name == commandName, commands)) 
+
+        if len(filteredCommands) == 0: 
+            print('неизвестная комманда')
+            continue
+
+        command = filteredCommands[0] # type: BaseCommand
+        command.handle(parts[1:])
 
 

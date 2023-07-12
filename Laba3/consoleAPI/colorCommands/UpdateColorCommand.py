@@ -22,4 +22,4 @@ class UpdateColorCommand(BaseCommand):
         color = self.colorRepository.getById(params[0])
         color.colorName = params[1]
         self.colorRepository.update(color)
-        print(f'Цвет обновлен: {color}')
+        print(f'Цвет обновлен: {color}\n')

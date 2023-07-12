@@ -20,5 +20,6 @@ class AddTypeProductCommand(BaseCommand):
             return
 
         typeProduct = TypeProduct(params[0])
-        self.typeProductRepository.add(typeProduct)
-        print(f'Добавлен тип: {typeProduct}')
+        typeProductId = self.typeProductRepository.add(typeProduct)
+        typeProduct.id = typeProductId 
+        print(f'Добавлен тип: {typeProduct}\n')

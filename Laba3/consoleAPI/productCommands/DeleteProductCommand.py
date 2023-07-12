@@ -19,4 +19,4 @@ class DeleteProductCommand(BaseCommand):
             return
         
         self.productRepository.delete(params[0])
-        print('Товар удален:')
+        print('Товар удален\n')

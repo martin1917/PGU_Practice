@@ -20,4 +20,4 @@ class DeleteColorCommand(BaseCommand):
             return
 
         self.colorRepository.delete(params[0])
-        print('Цвет удален')
+        print('Цвет удален\n')

@@ -17,4 +17,4 @@ class CountProductsForEachColorCommand(BaseCommand):
 
         result = countProductsForEachColor(self.connector)
         for row in result:
-            print(f'{row[0]}: {row[1]}')
+            print(f'{row[0]}: {row[1]}\n')

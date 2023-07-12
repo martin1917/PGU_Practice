@@ -18,4 +18,4 @@ class GetColorByIdCommand(BaseCommand):
             print('Передано неверное кол-во параметров')
             return
 
-        print(self.colorRepository.getById(params[0]))
+        print(f'{self.colorRepository.getById(params[0])}\n')
