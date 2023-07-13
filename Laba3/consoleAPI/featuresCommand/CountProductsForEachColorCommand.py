@@ -4,6 +4,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class CountProductsForEachColorCommand(BaseCommand):
+    '''Команда для подсчета количества товаров для каждого цвета'''
     def __init__(self, connector: SQLiteConnector):
         super().__init__()
         self.connector = connector

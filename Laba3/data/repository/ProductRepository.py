@@ -9,6 +9,7 @@ class ProductRepository:
         self.connector = connector
 
     def getAll(self) -> list[Product]:
+        '''получить все товары'''
         conn = self.connector.connect()
         cur = conn.cursor()
 
@@ -45,6 +46,7 @@ class ProductRepository:
 
     
     def getById(self, productId: int) -> Product:
+        '''получить товар по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
 
@@ -82,6 +84,7 @@ class ProductRepository:
         return product
     
     def add(self, product: Product) -> int:
+        '''добавить товар'''
         if product.id == -1:
             conn = self.connector.connect()
             cur = conn.cursor()
@@ -109,12 +112,14 @@ class ProductRepository:
         return -1
     
     def delete(self, productId: int):
+        '''удалить товар по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""DELETE FROM product WHERE id = ?""", (productId, ))
         conn.commit()
     
     def update(self, updatedProduct: Product):
+        '''обновить товар'''
         if updatedProduct.id != -1 and updatedProduct.typeProduct.id != -1 and updatedProduct.color.id != -1:
             conn = self.connector.connect()
             cur = conn.cursor()

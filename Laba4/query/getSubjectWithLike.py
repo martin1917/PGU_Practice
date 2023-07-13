@@ -3,6 +3,10 @@ from SQLiteConnector import SQLiteConnector
 
 
 def getSubjectWithLike(connector: SQLiteConnector, like: str) -> list[Subject]:
+    '''
+        Получить все дисциплины, в чьем названии 
+        встречается указанная подстрока
+    '''
     conn = connector.connect()
     cur = conn.cursor()
     cur.execute(f'SELECT * FROM subject WHERE name LIKE \'{like}\'')

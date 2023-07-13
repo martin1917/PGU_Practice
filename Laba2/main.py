@@ -1,4 +1,3 @@
-
 from HyperbolicFunctions import HyperbolicSine, HyperbolicCosine
 from SingleVariableFunc import SingleVariableFunc
 

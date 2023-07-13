@@ -12,6 +12,7 @@ class SingleVariableFunc:
     
     @property
     def name(self):
+        '''Полное имя функции (имя + словесное описание)'''
         return f'f(x) := {self.__name} - {self.__desc}'
 
     def getUsefulInfo(self) -> str:

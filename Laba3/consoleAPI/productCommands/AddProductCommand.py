@@ -7,6 +7,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class AddProductCommand(BaseCommand):
+    '''Команда по добавению товара'''
     def __init__(
             self, 
             productRepository: ProductRepository, 

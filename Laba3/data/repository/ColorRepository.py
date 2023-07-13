@@ -7,6 +7,7 @@ class ColorRepository:
         self.connector = connector
 
     def getAll(self) -> list[Color]:
+        '''получить все цвета'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM color""")
@@ -20,6 +21,7 @@ class ColorRepository:
         return colors
 
     def getById(self, colorId: int) -> Color:
+        '''получить цвет по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM color WHERE id = ?""", (colorId, ))
@@ -34,6 +36,7 @@ class ColorRepository:
         return color
 
     def add(self, color: Color) -> int:
+        '''добавить цвет'''
         if color.id == -1:
             conn = self.connector.connect()
             cur = conn.cursor()
@@ -44,6 +47,7 @@ class ColorRepository:
         return -1
 
     def delete(self, colorId: int):
+        '''удалить цвет по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("PRAGMA foreign_keys = ON")
@@ -51,6 +55,7 @@ class ColorRepository:
         conn.commit()
 
     def update(self, updatedColor: Color):
+        '''обновить цвет'''
         if updatedColor.id != -1:
             conn = self.connector.connect()
             cur = conn.cursor()

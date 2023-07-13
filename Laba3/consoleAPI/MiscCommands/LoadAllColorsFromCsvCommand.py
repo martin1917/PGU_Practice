@@ -6,6 +6,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class LoadAllColorsFromCsvCommand(BaseCommand):
+    '''Команда для загрузки всех цветов из csv файла'''
     def __init__(self):
         super().__init__()
         self.name = 'load_all_colors'

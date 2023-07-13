@@ -7,6 +7,7 @@ class TypeProductRepository:
         self.connector = connector
 
     def getById(self, typeId: int):
+        '''получить тип товара по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM type_product WHERE id = ?""", (typeId, ))
@@ -21,6 +22,7 @@ class TypeProductRepository:
         return typeProduct
 
     def add(self, typeProduct: TypeProduct) -> int:
+        '''добавить тип товара'''
         if typeProduct.id == -1:
             conn = self.connector.connect()
             cur = conn.cursor()
@@ -31,6 +33,7 @@ class TypeProductRepository:
         return -1
 
     def delete(self, typeProductId: int):
+        '''удалить тип товара по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("PRAGMA foreign_keys = ON")
@@ -38,6 +41,7 @@ class TypeProductRepository:
         conn.commit()
 
     def update(self, updatedTypeProduct: TypeProduct):
+        '''обновить тип товара'''
         if updatedTypeProduct.id != -1:
             conn = self.connector.connect()
             cur = conn.cursor()

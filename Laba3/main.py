@@ -34,6 +34,7 @@ if __name__ == '__main__':
     typeProductRepo = TypeProductRepository(connector)
     productRepo = ProductRepository(connector)
 
+    # регистрация допустимых команд
     commands = [
         GetColorByIdCommand(colorRepo),
         AddColorCommand(colorRepo),
@@ -56,10 +57,12 @@ if __name__ == '__main__':
         LoadAllColorsFromCsvCommand()
     ]
 
+    # Вывод базовых команд
     print('help - справка по всем коммандам')
     print('help [command] - справка по камманде')
     print('q - выход из программы')
 
+    # цикл, запрашивающий ввод команды от пользователя
     while True:
         print('> ', end='')
         parts = input().split(' ')

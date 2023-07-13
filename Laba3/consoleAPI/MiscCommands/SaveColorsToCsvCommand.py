@@ -5,6 +5,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class SaveColorsToCsvCommand(BaseCommand):
+    '''Команда для сохранения всех цветов в csv файл'''
     def __init__(self, colorRepository: ColorRepository):
         super().__init__()
         self.colorRepository = colorRepository

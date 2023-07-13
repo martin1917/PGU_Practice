@@ -4,6 +4,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class GetProductByIdCommand(BaseCommand):
+    '''Команда по получению товара по id'''
     def __init__(self, productRepository: ProductRepository):
         super().__init__()
         self.productRepository = productRepository     

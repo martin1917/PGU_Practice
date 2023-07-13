@@ -3,6 +3,11 @@ from entity.Subject import Subject
 
 
 def getSubjectsWithCourseworkAndSelfwork(connector: SQLiteConnector, teacherFIO: str) -> list[Subject]:
+    '''
+        Получить все дисциплин для преподавателя, 
+        по которым предусмотрена курсовая работа 
+        и самостоятельная работа
+    '''
     conn = connector.connect()
     cur = conn.cursor()
 

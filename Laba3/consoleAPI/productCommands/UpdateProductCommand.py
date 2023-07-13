@@ -6,6 +6,7 @@ from consoleAPI.Command import BaseCommand
 
 
 class UpdateProductCommand(BaseCommand):
+    '''Команда по обновлению товара'''
     def __init__(
             self, 
             productRepository: ProductRepository, 
