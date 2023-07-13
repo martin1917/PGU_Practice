@@ -1,5 +1,6 @@
 class Product:
     EURO_RATE = 100.42
+    '''курс евро к рублю'''
 
     def __init__(self):
         self.name = ''
@@ -26,10 +27,10 @@ class Product:
             self.priceInRuble += moneyInEuro * Product.EURO_RATE
 
     def __str__(self) -> str:
-        nameStr = f'Товар: {self.name};'
-        priceStr = f'Цена: {self.priceInRuble}₽;'
-        manufacturerStr = f'Изготовитель: {self.manufacturer}'
-        return f'{{{nameStr} {priceStr} {manufacturerStr}}}'
+        s = f'Товар: {self.name};'
+        s += f'Цена: {self.priceInRuble}₽;'
+        s += f'Изготовитель: {self.manufacturer}'
+        return f'{{{s}}}'
     
     def __del__(self):
         print(f'Товар [{self.name}] УНИЧТОЖЕН !!!')

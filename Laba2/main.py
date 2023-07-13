@@ -1,4 +1,5 @@
 from HyperbolicFunctions import HyperbolicSine, HyperbolicCosine
+from Exponent import Exponent
 from SingleVariableFunc import SingleVariableFunc
 
 
@@ -24,7 +25,12 @@ if __name__ == '__main__':
     sh = HyperbolicSine()
     calc(sh, x)
 
-    print('\n', '*' * 100, '\n', sep='\n')
+    print('*' * 75)
 
     ch = HyperbolicCosine()
     calc(ch, x)
+
+    print('*' * 75)
+
+    exp = Exponent()
+    calc(exp, x)

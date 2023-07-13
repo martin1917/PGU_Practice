@@ -24,3 +24,6 @@ class HyperbolicCosine(SingleVariableFunc):
     
     def getDerivative(self):
         return HyperbolicSine()
+
+    def getUsefulInfo(self) -> str:
+        return 'Вид фунции cosh(x) = (exp(x) + exp(-x)) / 2'

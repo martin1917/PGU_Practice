@@ -3,7 +3,7 @@ from abc import ABCMeta, abstractmethod
 class SingleVariableFunc:
     __metaclass__ = ABCMeta
 
-    def __init__(self, name: str, desc: str) -> None:
+    def __init__(self, name: str, desc: str):
         print('[INFO]: ВЫЗОВ БАЗОВОГО КОНСТРУКТОРА SingleVariableFunc()')
         self.__name = name
         """имя функции"""
