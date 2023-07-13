@@ -8,5 +8,7 @@ class Teacher:
         self.subjectId = subjectId
     
     def __str__(self) -> str:
-        s = f'id: {self.id};ФИО: {self.FIO};ID_Дисциплины: {self.subjectId}'
+        s = f'id: {self.id};'
+        s += f'ФИО: {self.FIO};'
+        s += f'ID_Дисциплины: {self.subjectId}'
         return f'Преподаватель: {{{s}}}'
