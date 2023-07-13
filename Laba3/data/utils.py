@@ -29,10 +29,17 @@ def saveSimpleObjectsInCsv(path: str, datas: list):
     '''
     with open(path, mode='a+', encoding='utf-8') as file:
         for data in datas:
-            keys = [attr for attr in dir(data) if not attr.startswith('__')]
-            values = [str(getattr(data, attr)) for attr in dir(data) if not attr.startswith('__')]
-            fileWriter = csv.writer(file, delimiter = ',', lineterminator='\r')
+            keys = [
+                attr 
+                for attr in dir(data) 
+                if not attr.startswith('__')]
 
+            values = [
+                str(getattr(data, attr)) 
+                for attr in dir(data) 
+                if not attr.startswith('__')]
+            
+            fileWriter = csv.writer(file, delimiter = ',', lineterminator='\r')
             file.seek(0)
             tmp = file.readline()[:-1]
             if tmp != ','.join(keys):

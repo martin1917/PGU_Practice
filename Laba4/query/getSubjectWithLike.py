@@ -2,10 +2,12 @@ from entity.Subject import Subject
 from SQLiteConnector import SQLiteConnector
 
 
-def getSubjectWithLike(connector: SQLiteConnector, like: str) -> list[Subject]:
+def getSubjectWithLike(
+        connector: SQLiteConnector, 
+        like: str) -> list[Subject]:
     '''
         Получить все дисциплины, в чьем названии 
-        встречается указанная подстрока
+        встречается строка с указанным шаблоном
     '''
     conn = connector.connect()
     cur = conn.cursor()

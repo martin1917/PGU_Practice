@@ -2,7 +2,9 @@ from SQLiteConnector import SQLiteConnector
 from entity.Subject import Subject
 
 
-def getSubjectsWithCourseworkAndSelfwork(connector: SQLiteConnector, teacherFIO: str) -> list[Subject]:
+def getSubjectsWithCourseworkAndSelfwork(
+        connector: SQLiteConnector, 
+        teacherFIO: str) -> list[Subject]:
     '''
         Получить все дисциплин для преподавателя, 
         по которым предусмотрена курсовая работа 
