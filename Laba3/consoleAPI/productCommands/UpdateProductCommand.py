@@ -2,7 +2,7 @@ from data.repository.ColorRepository import ColorRepository
 from data.repository.TypeProductRepository import TypeProductRepository
 from data.repository.ProductRepository import ProductRepository
 from consoleAPI.Argument import Argument
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 
 class UpdateProductCommand(BaseCommand):

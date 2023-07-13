@@ -1,8 +1,7 @@
 from entity.Color import Color
 from data.utils import loadSimpleObjectsFromCsv
-from data.utils import saveSimpleObjectsInCsv
 from consoleAPI.Argument import Argument
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 
 class LoadAllColorsFromCsvCommand(BaseCommand):

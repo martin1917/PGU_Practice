@@ -1,7 +1,8 @@
 from data.SQLiteConnector import SQLiteConnector
 
 
-def countProductsForEachColor(connector: SQLiteConnector) -> list[tuple[str, int]]:
+def countProductsForEachColor(
+        connector: SQLiteConnector) -> list[tuple[str, int]]:
     '''посчитать количество товаров для каждого цвета'''
     conn = connector.connect()
     cur = conn.cursor()

@@ -5,7 +5,7 @@ from data.SQLiteConnector import SQLiteConnector
 
 
 class ProductRepository:
-    def __init__(self, connector: SQLiteConnector) -> None:
+    def __init__(self, connector: SQLiteConnector):
         self.connector = connector
 
     def getAll(self) -> list[Product]:
@@ -91,12 +91,18 @@ class ProductRepository:
 
             typeId = product.typeProduct.id
             if typeId == -1:
-                cur.execute("""INSERT INTO type_product (type_name) VALUES (?)""", (product.typeProduct.typeName, ))
+                cur.execute("""
+                    INSERT INTO type_product 
+                    (type_name) 
+                    VALUES (?)""", (product.typeProduct.typeName, ))
                 typeId = cur.lastrowid
 
             colorId = product.color.id
             if colorId == -1:
-                cur.execute("""INSERT INTO color (color_name) VALUES (?)""", (product.color.colorName, ))
+                cur.execute("""
+                    INSERT INTO color 
+                    (color_name) 
+                    VALUES (?)""", (product.color.colorName, ))
                 colorId = cur.lastrowid
             
             params = (product.productName, product.price, typeId, product.availability, colorId, )
@@ -125,10 +131,16 @@ class ProductRepository:
             cur = conn.cursor()
 
             paramsForColor = (updatedProduct.color.colorName, updatedProduct.color.id, )
-            cur.execute("""UPDATE color SET color_name = ? WHERE id = ?""", paramsForColor)
+            cur.execute("""
+                UPDATE color SET 
+                    color_name = ? 
+                WHERE id = ?""", paramsForColor)
 
             paramsForTypeProduct = (updatedProduct.typeProduct.typeName, updatedProduct.typeProduct.id, )
-            cur.execute("""UPDATE type_product SET type_name = ? WHERE id = ?""", paramsForTypeProduct)
+            cur.execute("""
+                        UPDATE type_product SET 
+                            type_name = ? 
+                        WHERE id = ?""", paramsForTypeProduct)
             
             paramsForProduct = (
                 updatedProduct.productName, 

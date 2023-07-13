@@ -1,4 +1,4 @@
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 from consoleAPI.colorCommands.DeleteColorCommand import DeleteColorCommand
 from consoleAPI.colorCommands.UpdateColorCommand import UpdateColorCommand

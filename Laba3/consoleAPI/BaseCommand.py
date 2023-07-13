@@ -15,7 +15,7 @@ class BaseCommand:
         """Обработчик команды"""
 
     def help(self) -> str:
-        '''Подробное информация по команде'''
+        '''Подробная информация по команде'''
         params = list(map(lambda arg: f'[{arg.name}]', self.args))
         s = f'{self.description}: {self.name} {" ".join(params)}\n'
         if len(self.args) != 0:

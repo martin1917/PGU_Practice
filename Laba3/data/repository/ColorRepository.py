@@ -3,7 +3,7 @@ from entity.Color import Color
 
 
 class ColorRepository:
-    def __init__(self, connector: SQLiteConnector) -> None:
+    def __init__(self, connector: SQLiteConnector):
         self.connector = connector
 
     def getAll(self) -> list[Color]:
@@ -40,7 +40,12 @@ class ColorRepository:
         if color.id == -1:
             conn = self.connector.connect()
             cur = conn.cursor()
-            cur.execute("""INSERT INTO color (color_name) VALUES (?)""", (color.colorName, ))
+
+            cur.execute("""
+                INSERT INTO color 
+                (color_name) 
+                VALUES (?)""", (color.colorName, ))
+            
             conn.commit()
             return cur.lastrowid
         
@@ -60,5 +65,8 @@ class ColorRepository:
             conn = self.connector.connect()
             cur = conn.cursor()
             cur.execute("PRAGMA foreign_keys = ON")
-            cur.execute("""UPDATE color SET color_name = ? WHERE id = ?""", (updatedColor.colorName, updatedColor.id, ))
+            cur.execute("""
+                UPDATE color SET 
+                    color_name = ? 
+                WHERE id = ?""", (updatedColor.colorName, updatedColor.id, ))
             conn.commit()

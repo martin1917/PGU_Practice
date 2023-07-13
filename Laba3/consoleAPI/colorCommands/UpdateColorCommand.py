@@ -1,6 +1,6 @@
 from data.repository.ColorRepository import ColorRepository
 from consoleAPI.Argument import Argument
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 
 class UpdateColorCommand(BaseCommand):

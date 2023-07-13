@@ -1,7 +1,7 @@
 from data.repository.ColorRepository import ColorRepository
 from data.utils import saveSimpleObjectsInCsv
 from consoleAPI.Argument import Argument
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 
 class SaveColorsToCsvCommand(BaseCommand):

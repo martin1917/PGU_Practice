@@ -3,14 +3,16 @@ from entity.TypeProduct import TypeProduct
 
 
 class TypeProductRepository:
-    def __init__(self, connector: SQLiteConnector) -> None:
+    def __init__(self, connector: SQLiteConnector):
         self.connector = connector
 
     def getById(self, typeId: int):
         '''получить тип товара по id'''
         conn = self.connector.connect()
         cur = conn.cursor()
-        cur.execute("""SELECT * FROM type_product WHERE id = ?""", (typeId, ))
+        cur.execute("""
+            SELECT * FROM type_product 
+            WHERE id = ?""", (typeId, ))
         result = cur.fetchone()
 
         if result is None:
@@ -26,7 +28,10 @@ class TypeProductRepository:
         if typeProduct.id == -1:
             conn = self.connector.connect()
             cur = conn.cursor()
-            cur.execute("""INSERT INTO type_product (type_name) VALUES (?)""", (typeProduct.typeName, ))
+            cur.execute("""
+                INSERT INTO type_product 
+                (type_name) 
+                VALUES (?)""", (typeProduct.typeName, ))
             conn.commit()
             return cur.lastrowid
 
@@ -37,7 +42,8 @@ class TypeProductRepository:
         conn = self.connector.connect()
         cur = conn.cursor()
         cur.execute("PRAGMA foreign_keys = ON")
-        cur.execute("""DELETE FROM type_product WHERE id = ?""", (typeProductId, ))
+        params = (typeProductId, )
+        cur.execute("""DELETE FROM type_product WHERE id = ?""", params)
         conn.commit()
 
     def update(self, updatedTypeProduct: TypeProduct):
@@ -46,5 +52,11 @@ class TypeProductRepository:
             conn = self.connector.connect()
             cur = conn.cursor()
             cur.execute("PRAGMA foreign_keys = ON")
-            cur.execute("""UPDATE type_product SET type_name = ? WHERE id = ?""", (updatedTypeProduct.typeName, updatedTypeProduct.id, ))
+
+            params = (updatedTypeProduct.typeName, updatedTypeProduct.id, )
+            cur.execute("""
+                UPDATE type_product SET 
+                    type_name = ? 
+                WHERE id = ?""", params)
+            
             conn.commit()

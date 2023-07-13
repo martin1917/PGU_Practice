@@ -1,7 +1,7 @@
 from entity.TypeProduct import TypeProduct
 from data.repository.TypeProductRepository import TypeProductRepository
 from consoleAPI.Argument import Argument
-from consoleAPI.Command import BaseCommand
+from consoleAPI.BaseCommand import BaseCommand
 
 
 class AddTypeProductCommand(BaseCommand):
